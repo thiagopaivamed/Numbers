@@ -1,0 +1,67 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Numbers</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" class="input">
+    </div>
+
+    <br><br><br>
+
+    <div class="level columns has-text-white is-invisible">
+        <div class="level-item has-text-centered has-background-info column">
+            <div>
+                <p class="heading">Trivia</p>
+                <p class="" id="trivia"></p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered has-background-dark column">
+            <div>
+                <p class="heading">Year</p>
+                <p class="" id="year"></p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered has-background-primary column">
+            <div>
+                <p class="heading">Math</p>
+                <p class="" id="math"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(".input").keyup(function () {
+            var input = $(".input").val();
+            var urlTrivia = 'http://numbersapi.com/' + input + '/trivia';
+            var urlYear = 'http://numbersapi.com/' + input + '/year';
+            var urlMath = 'http://numbersapi.com/' + input + '/math';
+            
+            $(".level").removeClass("is-invisible");
+
+            $.get(urlTrivia, function (data) {
+                $('#trivia').text(data);
+            });
+            
+            $.get(urlYear, function (data) {
+                $('#year').text(data);
+            });
+            
+            $.get(urlMath, function (data) {
+                $('#math').text(data);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
